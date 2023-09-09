@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_5</title>
+    <style>
+        .facts {
+            display: flex;
+            justify-content: left;
+            gap: 32px;
+            flex-wrap: wrap;
+            border: solid rgb(18, 173, 197) 5px;
+        }
+
+        .facts-img {
+            float: left;
+            width: 250px;
+            margin: 10px;
+        }
+
+        .facts-number {
+            text-align: center;
+            color: rgb(7, 63, 167);
+            font-weight: 700;
+            font-size: larger;
+        }
+
+        .facts-text {
+            list-style-type: square;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content"></div>
+    <script type="module">
+
+        import { catFacts } from "./s_5_data.js";
+        const data = JSON.parse(catFacts);
+        const content = document.querySelector('.content');
+
+        data.forEach(({ id, number, fact, url }) => {
+            const div = document.createElement('div');
+            div.classList.add('facts');
+            content.appendChild(div);
+
+
+            const img = document.createElement('img');
+            img.classList.add('facts-img');
+            img.src = url;
+            div.appendChild(img);
+
+            const factsBody = document.createElement('div');
+            factsBody.classList.add('facts-body');
+            div.appendChild(factsBody);
+
+            const idFact = document.createElement('h5');
+            idFact.classList.add('facts-id');
+            idFact.textContent = `Факт № ${id}:`;
+            factsBody.appendChild(idFact);
+
+            const catNumber = document.createElement('p');
+            catNumber.classList.add('facts-number');
+            catNumber.textContent = number;
+            factsBody.appendChild(catNumber);
+
+            const factsText = document.createElement('li');
+            factsText.classList.add('facts-text');
+            factsText.textContent = fact;
+            factsBody.appendChild(factsText);
+        });
+
+    </script>
+
+</body>
+
+</html>
